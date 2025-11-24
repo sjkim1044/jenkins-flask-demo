@@ -5,14 +5,9 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     return """
-    <h1>Jenkins + GitHub + Docker + Flask</h1>
-    <p>이 페이지가 보이면 CI/CD가 잘 동작한 거야 😎</p>
+    <h1>버전 2 - Jenkins 자동 배포 테스트</h1>
+    <p>야이녀석아 이 문구가 보이면 GitHub에 push한 내용이 Jenkins를 통해 자동 배포된 거야 🚀</p>
     """
 
-@app.route("/health")
-def health():
-    return "OK"
-
 if __name__ == "__main__":
-    # 도커 컨테이너에서 외부 접속 가능하게 0.0.0.0 사용
     app.run(host="0.0.0.0", port=5000, debug=False)

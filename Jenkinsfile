@@ -4,8 +4,8 @@ pipeline {
     environment {
         IMAGE_NAME     = "flask-demo"
         CONTAINER_NAME = "flask-demo"
-        HOST_PORT      = "8082"   // 서버에서 바깥에 열릴 포트
-        CONTAINER_PORT = "5000"   // Flask 앱 포트
+        HOST_PORT      = "8082"
+        CONTAINER_PORT = "5000"
     }
 
     stages {
@@ -33,16 +33,6 @@ pipeline {
 
                   echo "== 실행 중 컨테이너 확인 =="
                   docker ps | grep ${CONTAINER_NAME} || true
-                '''
-            }
-        }
-
-        stage('Health check') {
-            steps {
-                sh '''
-                  echo "== 헬스 체크 (curl) =="
-                  sleep 5
-                  curl -f http://localhost:${HOST_PORT}/health || (echo "Health check failed" && exit 1)
                 '''
             }
         }
